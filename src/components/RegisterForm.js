@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native'
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
-import { emailChanged, passwordChanged, loginUser, goToRegister } from '../actions';
+import { emailChanged, passwordChanged, registerUser, goToLogin } from '../actions';
 import { Box, BoxSection, Input, Button, Spinner, Link } from './common';
 
-class LoginForm extends Component {
+class RegisterForm extends Component {
 
   onEmailChange(text) {
     this.props.emailChanged(text);
@@ -17,16 +16,13 @@ class LoginForm extends Component {
 
   onButtonPress() {
     const { email, password } = this.props;
-    this.props.loginUser({ email, password })
+    this.props.registerUser({ email, password })
   }
 
   onLinkPress() {
     const { email, password, loading, error } = this.props;
-    this.props.goToRegister({ email, password, loading, error })
-
+    this.props.goToLogin({ email, password, loading, error })
   }
-
-
 
   renderButton() {
     if (this.props.loading) {
@@ -34,7 +30,7 @@ class LoginForm extends Component {
     }
     return (
       <Button onPress={this.onButtonPress.bind(this)}>
-        Login
+        Register
       </Button>
     )
   }
@@ -60,9 +56,7 @@ class LoginForm extends Component {
         />
         </BoxSection>
 
-        <BoxSection>
-          <Text style={styles.errorTextStyle}>{this.props.error}</Text>
-        </BoxSection>
+        <Text style={styles.errorTextStyle}>{this.props.error}</Text>
 
         <BoxSection>
           {this.renderButton()}
@@ -71,11 +65,12 @@ class LoginForm extends Component {
         <BoxSection>
 
           <Link onPress={this.onLinkPress.bind(this)}>
-            Register
+            Login
           </Link>
         </BoxSection>
 
       </Box>
+
     )
   }
 }
@@ -85,8 +80,7 @@ const styles = {
     fontSize: 16,
     alignSelf: 'center',
     color: 'red',
-    textAlign: 'center',
-    flex: 1,
+    paddingTop: 5
   }
 }
 
@@ -96,5 +90,5 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(mapStateToProps, {
-  emailChanged, passwordChanged, loginUser, goToRegister
-})(LoginForm);
+  emailChanged, passwordChanged, registerUser, goToLogin
+})(RegisterForm);
