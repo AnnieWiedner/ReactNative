@@ -27,7 +27,6 @@ class LoginForm extends Component {
   }
 
 
-
   renderButton() {
     if (this.props.loading) {
       return <Spinner size="large" />

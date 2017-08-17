@@ -4,6 +4,9 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import RoommateList from './components/RoommateList';
 import RoommateCreate from './components/RoommateCreate';
+import HouseList from './components/HouseList';
+import HouseCreate from './components/HouseCreate';
+
 
 const RouterComponent = () => {
   return (
@@ -12,6 +15,23 @@ const RouterComponent = () => {
         <Scene key="login" component={LoginForm} title="Login" />
         <Scene key="register" component={RegisterForm} title="Register" />
       </Scene>
+
+      <Scene key="house">
+        <Scene
+          onRight={() => Actions.houseCreate()}
+          rightTitle="Add"
+          key="houseList"
+          component={HouseList}
+          title="Houses"
+        />
+        <Scene
+          key="houseCreate"
+          component={HouseCreate}
+          title="House Create"
+        />
+      </Scene>
+
+
       <Scene key="main">
         <Scene
           onRight={() => Actions.roommateCreate()}
