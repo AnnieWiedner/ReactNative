@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView, View, Text } from 'react-native';
 import { housesFetch } from '../actions';
-import ListItem from './ListItem';
+import ListHouse from './ListHouse';
 
 class HouseList extends Component {
   componentWillMount() {
@@ -24,7 +24,7 @@ class HouseList extends Component {
   }
 
   renderRow(house) {
-    return <ListItem house={house} />
+    return <ListHouse house={house} />
   }
 
   render() {

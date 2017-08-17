@@ -21,9 +21,6 @@ export const houseCreate = ({ name, address }) => {
       .then(() => {
         dispatch({ type: HOUSE_CREATE });
         Actions.houseList({ type: 'reset' })
-      }).
-      catch((err) => {
-        console.log(err)
       })
   }
 };
